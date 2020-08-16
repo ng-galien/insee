@@ -2,16 +2,16 @@ cube('Insee', {
   sql: 'SELECT * FROM public.insee',
   
   joins: {
-    States: {
-      relationship: 'hasOne',
-      sql: '${Insee}.death_state = ${States}.id'
+    State: {
+      relationship: 'belongsTo',
+      sql: '${Insee}.death_state = ${State}.id'
     }
   },
   
   measures: {
     count: {
       type: 'count',
-      drillMembers: [id, deathDate, birthDate],
+      drillMembers: [id, deathDate],
       title: "Total"
     },
     deathPop1: {

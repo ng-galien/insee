@@ -1,4 +1,4 @@
-# France death statistics using Postgresql and CubeJs
+# France death statistics using Postgresql and CubeJs on Node
 
 ## Database
 
@@ -282,7 +282,7 @@ CUBEJS_DB_TYPE=postgres
 CUBEJS_API_SECRET=secret" >> .env
 ```
 
-Run in clone directory
+Instal Cube and start Node
 
 ```bash
 $ npm install  

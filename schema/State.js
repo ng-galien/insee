@@ -1,4 +1,4 @@
-cube(`States`, {
+cube(`State`, {
   sql: `SELECT * FROM public.state`,
   
   dimensions: {

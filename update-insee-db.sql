@@ -1,5 +1,3 @@
-
-
 -- correct dates
 update insee_update
 set mdec = 1
@@ -99,4 +97,47 @@ FROM (
 order by year;
 
 
+DROP table if exists insee_stat;
+CREATE table insee_stat as
+
+SELECT state.code || '-' || state.name as state,
+       state.region                      as region,
+       source.death_date,
+       source.sum_tot,
+       source.sum_cat_1,
+       source.sum_cat_2,
+       source.sum_cat_3,
+       source.sum_cat_4,
+       source.sum_cat_5,
+       source.sum_male,
+       source.sum_female,
+       round(source.sum_tot::numeric / state.tot_pop::numeric * 100000, 2) as norm_tot,
+       round(source.sum_cat_1::numeric / state.tot_pop_cat_1::numeric * 100000, 2) as norm_cat_1,
+       round(source.sum_cat_2::numeric / state.tot_pop_cat_2::numeric * 100000, 2) as norm_cat_2,
+       round(source.sum_cat_3::numeric / state.tot_pop_cat_3::numeric * 100000, 2) as norm_cat_3,
+       round(source.sum_cat_4::numeric / state.tot_pop_cat_4::numeric * 100000, 2) as norm_cat_4,
+       round(source.sum_cat_5::numeric / state.tot_pop_cat_5::numeric * 100000, 2) as norm_cat_5,
+       round(source.sum_male::numeric / state.f_pop::numeric * 100000, 2) as norm_male,
+       round(source.sum_female::numeric / state.h_pop::numeric * 100000, 2) as norm_female
+FROM (SELECT ins.death_date,
+             ins.death_state,
+             count(ins.id)      as sum_tot,
+             sum(ins.age_cat_1) as sum_cat_1,
+             sum(ins.age_cat_2) as sum_cat_2,
+             sum(ins.age_cat_3) as sum_cat_3,
+             sum(ins.age_cat_4) as sum_cat_4,
+             sum(ins.age_cat_5) as sum_cat_5,
+             sum(case when ins.sex = 'MALE' then 1 else 0 end) as sum_male,
+             sum(case when ins.sex = 'FEMALE' then 1 else 0 end) as sum_female
+      FROM insee ins
+      group by ins.death_date, ins.death_state, ins.sex
+      order by ins.death_date, ins.death_state, ins.sex) source
+         join state state on source.death_state = state.id;
+
+delete from insee where id is not null;
+delete from insee_update where depdec is not null;
+delete from state where id is not null;
+
+select *
+from insee_stat;
 

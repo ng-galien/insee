@@ -1,4 +1,3 @@
-
 drop table if exists insee_update;
 
 create table insee_update
@@ -69,7 +68,6 @@ create index state_region_idx
  */
 
 
-
 DROP TYPE IF EXISTS location_type;
 CREATE TYPE location_type AS ENUM (
     'MEDIC', 'EHPAD', 'DOM', 'PUBLIC', 'NA'
@@ -114,3 +112,5 @@ create index insee_sex_idx
     on insee (sex);
 create index insee_location_idx
     on insee (location);
+
+
