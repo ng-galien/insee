@@ -1,4 +1,6 @@
-# France death statistics using Postgresql and CubeJs on Node
+# France statistics using Postgresql and CubeJs on Node
+
+* Lastest data update: 2020-07-31
 
 ## Quick Start
 
@@ -318,6 +320,8 @@ FROM (
 order by year;
 ```
 
+![](check-update.png)
+
 ### Compact database
 
 This database is used by CubeJS.
@@ -360,8 +364,6 @@ FROM (SELECT ins.death_date,
       order by ins.death_date, ins.death_state, ins.sex) source
          join state state on source.death_state = state.id;
 ```
-
-![](check-update.png)
 
 ## Run Cube JS
 
