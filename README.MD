@@ -1,6 +1,49 @@
 # France death statistics using Postgresql and CubeJs on Node
 
-## Database
+## Quick Start
+
+* Clone git repo
+>git clone https://github.com/ng-galien/insee.git && cd insee
+
+* Create the database from minimal dump
+>sql -U postgres -d postgres -f min-dump.sql
+
+* Create your credential file
+>touch .env && echo "CUBEJS_DB_HOST=localhost
+CUBEJS_DB_NAME=insee
+CUBEJS_DB_USER=postgres
+CUBEJS_DB_PASS=postgres
+CUBEJS_DB_TYPE=postgres
+CUBEJS_API_SECRET=secret"  >> .env
+
+* Run Node Server
+>npm install && npm run dev
+
+* Open browser
+>[http://localhost:4000](http://localhost:4000)
+
+## Available statistics
+
+### Granularity / Drill
+
+* Day
+* Week
+* Month
+* Quarter
+* Year
+
+### Values 
+* Total death/day
+* Total by age groups
+* Total by sex
+* Normalized by region population
+
+### Dimensions / Filters
+
+* State: French department
+* Region: French region
+
+## Manual installation and update
 
 Create the database.
 

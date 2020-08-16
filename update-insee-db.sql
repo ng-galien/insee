@@ -102,7 +102,7 @@ CREATE table insee_stat as
 
 SELECT state.code || '-' || state.name as state,
        state.region                      as region,
-       source.death_date,
+       source.death_date as date,
        source.sum_tot,
        source.sum_cat_1,
        source.sum_cat_2,
