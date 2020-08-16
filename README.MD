@@ -2,7 +2,10 @@
 
 ## Database
 
-Create a database **insee**.  
+Create the database.
+
+>create database insee;
+
 Table definitions are in **schema.sql**
 
 ### Database for insee data source
@@ -146,11 +149,14 @@ Download and extract data from INSEE website
 
 ### Import with psql
 
->psql -U postgres -h localhost -d insee  
->insee=# \copy insee_update FROM '../2020-07-31_detail/DC_2018_det.csv' DELIMITER ';' CSV HEADER;  
->insee=# \copy insee_update FROM '../2020-07-31_detail/DC_2019_det.csv' DELIMITER ';' CSV HEADER;  
->insee=# \copy insee_update FROM '../2020-07-31_detail/DC_2020_det.csv' DELIMITER ';' CSV HEADER;
-COPY 361603
+With psql use **\copy** command to import csv files.
+
+```bash
+$ psql -U postgres -h localhost -d insee  
+\copy insee_update FROM '../2020-07-31_detail/DC_2018_det.csv' DELIMITER ';' CSV HEADER;  
+\copy insee_update FROM '../2020-07-31_detail/DC_2019_det.csv' DELIMITER ';' CSV HEADER;  
+\copy insee_update FROM '../2020-07-31_detail/DC_2020_det.csv' DELIMITER ';' CSV HEADER;
+```
 
 ## Update the statistics table
 
@@ -262,10 +268,26 @@ order by year;
 
 ## Run Cube JS
 
+### Create a credential file
+
+Credentials are stored in a **.env** file in the root directory
+
+```bash
+$ touch .env
+$ echo "CUBEJS_DB_HOST=localhost
+CUBEJS_DB_NAME=insee
+CUBEJS_DB_USER=postgres
+CUBEJS_DB_PASS=postgres
+CUBEJS_DB_TYPE=postgres
+CUBEJS_API_SECRET=secret" >> .env
+```
+
 Run in clone directory
 
-> npm install  
-> npm run dev
+```bash
+$ npm install  
+$ npm run dev
+````
 
 Open [http://localhost:4000](http://localhost:4000)
 
