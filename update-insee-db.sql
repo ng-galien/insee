@@ -134,10 +134,10 @@ FROM (SELECT ins.death_date,
       order by ins.death_date, ins.death_state, ins.sex) source
          join state state on source.death_state = state.id;
 
-delete from insee where id is not null;
-delete from insee_update where depdec is not null;
-delete from state where id is not null;
-
-select *
-from insee_stat;
+-- delete from insee where id is not null;
+-- delete from insee_update where depdec is not null;
+-- delete from state where id is not null;
+--
+-- select *
+-- from insee_stat;
 
