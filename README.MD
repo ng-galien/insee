@@ -1,4 +1,4 @@
-# France death stats using INSEE data Postgre and Cube js
+# France death statistics using Postgresql and CubeJs
 
 ## Database
 
