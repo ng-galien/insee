@@ -15,11 +15,23 @@
 * Create your credential file
 >touch .env && echo -e "CUBEJS_DB_HOST=localhost\nCUBEJS_DB_NAME=insee\nCUBEJS_DB_USER=postgres\nCUBEJS_DB_PASS=postgres\nCUBEJS_DB_TYPE=postgres\nCUBEJS_API_SECRET=secret"  >> .env
 
+Modify *.env* file to with your credentials, CUBEJS_DB_USER and CUBEJS_DB_PASS
+
+```
+CUBEJS_DB_HOST=localhost
+CUBEJS_DB_NAME=insee
+CUBEJS_DB_USER=my_user
+CUBEJS_DB_PASS=my_user_pwd
+CUBEJS_DB_TYPE=postgres
+CUBEJS_API_SECRET=secret
+```
+
 * Run Node Server
 >npm install && npm run dev
 
-* Open browser
+* Open browser and play with measures, dimensions and filters
 >[http://localhost:4000](http://localhost:4000)
+
 
 ## Available statistics
 
