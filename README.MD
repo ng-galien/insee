@@ -5,16 +5,15 @@
 * Clone git repo
 >git clone https://github.com/ng-galien/insee.git && cd insee
 
+* Unzip the dump
+
+>unzip min-dump.sql.zip 
+
 * Create the database from minimal dump
->sql -U postgres -d postgres -f min-dump.sql
+>psql -U postgres -d postgres -f min-dump.sql
 
 * Create your credential file
->touch .env && echo "CUBEJS_DB_HOST=localhost
-CUBEJS_DB_NAME=insee
-CUBEJS_DB_USER=postgres
-CUBEJS_DB_PASS=postgres
-CUBEJS_DB_TYPE=postgres
-CUBEJS_API_SECRET=secret"  >> .env
+>touch .env && echo -e "CUBEJS_DB_HOST=localhost\nCUBEJS_DB_NAME=insee\nCUBEJS_DB_USER=postgres\nCUBEJS_DB_PASS=postgres\nCUBEJS_DB_TYPE=postgres\nCUBEJS_API_SECRET=secret"  >> .env
 
 * Run Node Server
 >npm install && npm run dev
